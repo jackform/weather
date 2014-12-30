@@ -1,11 +1,21 @@
 package com.weather.model;
 
+import android.graphics.Bitmap;
+
 public class WeatherBriefInfo {
 	private String week;
 	private String date;
 	private String weatherStatus;
 	private String temperature;
+	private Bitmap weatherPicture;
 	
+	
+	public Bitmap getWeatherPicture() {
+		return weatherPicture;
+	}
+	public void setWeatherPicture(Bitmap weatherPicture) {
+		this.weatherPicture = weatherPicture;
+	}
 	public String getWeek() {
 		return week;
 	}

@@ -3,5 +3,8 @@
 
     <string name="app_name">WeatherDemo</string>
     <string name="hello_world">Hello world!</string>
-
+    <string name="citiesList">城市列表</string>
+	<string name="perWeekWeather">每周天气</string>
+	<string name="WeekDetail">天气详情</string>
+	<string name="emptyView">列表为空</string>
 </resources>

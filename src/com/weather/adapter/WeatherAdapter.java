@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 public class WeatherAdapter extends BaseAdapter {
@@ -51,21 +52,24 @@ public class WeatherAdapter extends BaseAdapter {
 			view = inflater.inflate(R.layout.item_weather_perweek, null);
 			holder.tvDate = (TextView)view.findViewById(R.id.date);
 			holder.tvTemp = (TextView)view.findViewById(R.id.temperature);
-			holder.tvWeather = (TextView)view.findViewById(R.id.weather);
+//			holder.tvWeather = (TextView)view.findViewById(R.id.weather);
+			holder.iv_weahter = (ImageView)view.findViewById(R.id.iv_weather);
 		} else {
 			holder = (ViewHolder) view.getTag();
 		}
 		WeatherBriefInfo weather = mData.get(position);
 		holder.tvTemp.setText(weather.getTemperature());
 		holder.tvDate.setText(weather.getDate()+"\n"+weather.getWeek());
-		holder.tvWeather.setText(weather.getWeatherStatus());
+//		holder.tvWeather.setText(weather.getWeatherStatus());
+		holder.iv_weahter.setImageBitmap(weather.getWeatherPicture());
 		return view;
 	}
 
 	public final class ViewHolder 
 	{
 		public TextView tvDate;
-		public TextView	tvWeather;
+//		public TextView	tvWeather;
 		public TextView tvTemp;
+		public ImageView iv_weahter;
 	}
 }

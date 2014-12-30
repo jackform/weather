@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="transparent">#00000000</color>
+    <color name="white">#ffffffff</color>
+    <color name="black">#ff333333</color>
+    <color name="red">#ffff0000</color>
+    <color name="gray">#ffaaaaaa</color>
+    <color name="green">#ff018287</color>
+    <color name="ltblue">#ff3e98ea</color>
+    <color name="blue">#ff0000ff</color>
+    <color name="deepblack">#ff000000</color>
+    <color name="deepblue">#ff00498a</color>
+    <color name="lightgray">#E5E5E5</color>
+    <color name="ltgray">#ff666666</color>
+    <color name="deepgray">#ff999999</color>
+    <color name="brown">#ff604a0f</color>
+    <color name="yellow">#e6f3ebd4</color>
+    <color name="bg_list_dark">#FFEAEAEA</color>
+    <color name="bg_list_light">#FFF4F4F4</color>
+    <color name="bg_list_selected">#FFDADADA</color>
+    <color name="bg_first_filter">#fff7f7f7</color>
+    <color name="num_yellow">#ffea9c00</color>
+    <color name="tab_select_yellow">#ffffaa00</color>
+    <color name="disable">#ffe5e5e5</color>
+    <color name="btn_title_disable">#ff777e81</color>
+    <color name="bg_dialog_title_divider">#ff4fa7f6</color>
+    <color name="bg_content_gray">#ffebedf0</color>
+    <color name="bg_web_bottom_toolbar">#ff3e4142</color>
+    <color name="bank_link">#ff004889</color>
+    <color name="light_yellow">#ffffe3a9</color>
+    <color name="bg_cards_main">#ff1c1c1c</color>
+    <color name="title_gray">#d4d4d4</color>
+    
+    <color name="dialog_btn">#ff158cfb</color>
+    <color name="bg_title_bar">#ff262626</color>
+    <color name="bg_tab_gray">#ffebedf0</color>
+    <color name="myorder_month_bg_color">#ffdddfe3</color>
+    <color name="myorder_pay_bg_color">#ffebedf0</color>
+    <color name="discount_red">#ffff9266</color>
+    <color name="bg_city_search">#ffb7b7b7</color>
+    <color name="bg_city_category">#fff7f7f7</color>
+    
+    <drawable name="bg_tab_tile">#ffffffff</drawable>
+    <drawable name="list_divider">#ffd4d4d4</drawable>
+    <drawable name="listSelector">#00000000</drawable>
+    <color name="remind_status_on">#ff365692</color>
+    <color name="remind_status_off">#ffDB4C4C</color>
+    
+    <color name="hint_text_color">#FFB5B4B4</color>
+    <color name="bg_cell">#dfdede</color>
+</resources>

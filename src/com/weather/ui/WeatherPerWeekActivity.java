@@ -12,10 +12,11 @@ import com.weather.utils.JsonParser;
 import com.weather.R;
 import com.weather.adapter.WeatherAdapter;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.ActionBar;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -23,23 +24,34 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 
-public class WeatherPerWeekActivity extends Activity {
+public class WeatherPerWeekActivity extends ActionBarActivity {
 	private final static String TAG = "WeatherPerWeekActivity";
-	private int mCityNo ;
+	private int mCityNo;
+	private String mCityName;
 	private WeatherAdapter mWeatherAdapter;
 	private ListView mWeatherList;
 	private ArrayList<WeatherInfo> mWeathers;
+	private View mEmptyView;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_weather_perweek);
-		
+
 		mCityNo = getIntent().getIntExtra(WeatherConstant.CITY_NO,0);
+		mCityName = getIntent().getStringExtra(WeatherConstant.CITY_NAME);
+		
+		ActionBar actionBar = getSupportActionBar();
+		actionBar.setTitle(mCityName);
+		actionBar.setDisplayShowHomeEnabled(false);
+		
 		mWeatherAdapter = new WeatherAdapter(WeatherPerWeekActivity.this);
 		mWeatherList = (ListView)findViewById(R.id.perweek_weather_list);
 		mWeatherList.setAdapter(mWeatherAdapter);
 		mWeatherList.setOnItemClickListener(mOnEachDayClickListener);
+		
+		mEmptyView = findViewById(R.id.empty_view);
+		mWeatherList.setEmptyView(mEmptyView);
 		
 		WeatherObtainTask task = new WeatherObtainTask();
 		task.execute();
@@ -64,9 +76,9 @@ public class WeatherPerWeekActivity extends Activity {
 			String url = WeatherConstant.WEATHER_PER_WEEK_URL_BASE + mCityNo + ".html";
 			Log.v(TAG,"url:"+url);
 			String content = HttpUtils.readJsonFromUrl(url);
-			Log.v(TAG,content);
 			if ( TextUtils.isEmpty(content) )
 				return null;
+			Log.v(TAG,content);
 			WeatherPerWeekInfo weatherAllInfo = JsonParser.weatherPerWeekParser(content);
 			mWeathers = weatherAllInfo.getWeathers();
 			return DataConverter.convertToBriefWeathers(weatherAllInfo);

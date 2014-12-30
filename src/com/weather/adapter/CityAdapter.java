@@ -3,6 +3,7 @@ package com.weather.adapter;
 import java.util.ArrayList;
 
 import com.weather.model.CityInfo;
+import com.weather.utils.ProvinceHeadNoUtils;
 import com.weather.R;
 
 
@@ -52,9 +53,23 @@ public class CityAdapter extends BaseAdapter {
 			holder = new ViewHolder();
 			view = inflator.inflate(R.layout.item_city,null);
 			holder.tv = (TextView) view.findViewById(R.id.city_name);
+			holder.tvProvince = (TextView)view.findViewById(R.id.province_name);
+			holder.line_up = (View)view.findViewById(R.id.line_up);
+			holder.line_down = (View)view.findViewById(R.id.line_down);
 			view.setTag(holder);
 		} else {
 			holder = (ViewHolder) view.getTag();
+		}
+		if( ProvinceHeadNoUtils.isHeadCity(position) ) {
+			holder.tvProvince.setText(ProvinceHeadNoUtils.getProvinceName());
+			holder.tvProvince.setVisibility(View.VISIBLE);
+			holder.line_down.setVisibility(View.VISIBLE);
+			holder.line_up.setVisibility(View.VISIBLE);
+			ProvinceHeadNoUtils.next();
+		} else {
+			holder.tvProvince.setVisibility(View.GONE);
+			holder.line_down.setVisibility(View.GONE);
+			holder.line_up.setVisibility(View.GONE);
 		}
 		holder.tv.setText(mData.get(position).getCityName());
 		return view;
@@ -63,5 +78,8 @@ public class CityAdapter extends BaseAdapter {
 	public final class ViewHolder
 	{
 		public TextView tv;
+		public TextView tvProvince;
+		public View 	line_up;
+		public View 	line_down;
 	}
 }

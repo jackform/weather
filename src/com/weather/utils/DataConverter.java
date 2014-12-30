@@ -6,8 +6,12 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Hashtable;
 
+import android.graphics.Bitmap;
+import android.text.TextUtils;
+
 import com.weather.model.WeatherBriefInfo;
 import com.weather.model.WeatherConciseInfo;
+import com.weather.model.WeatherConstant;
 import com.weather.model.WeatherInfo;
 import com.weather.model.WeatherPerWeekInfo;
 
@@ -69,6 +73,11 @@ public class DataConverter {
 			w.setWeek(weekDaysQuery.get(mCalendar.get(Calendar.DAY_OF_WEEK)));
 			String weatherStatus1 = weatherStateQuery.get(weather.getStatus1());
 			String weatherStatus2 = weatherStateQuery.get(weather.getStatus2());
+			Bitmap a = null;
+			if( !TextUtils.isEmpty(weatherStatus1)) {
+				a = HttpUtils.readBitmapFromUrl(WeatherConstant.WEATHER_IMAGE_URL_BASE+weather.getStatus1()+".png");
+			}
+			w.setWeatherPicture(a);
 			String weatherStr = weatherStatus1.equals(weatherStatus2) ? weatherStatus1 : weatherStatus1+"转"+weatherStatus2 ;
 			w.setWeatherStatus(weatherStr);
 			briefWeather.add(w);

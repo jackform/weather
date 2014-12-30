@@ -2,13 +2,9 @@ package com.weather.model;
 
 import java.util.ArrayList;
 
-import com.google.gson.annotations.SerializedName;
 
 public class WeatherPerWeekInfo {
-	@SerializedName("f1")
 	ArrayList<WeatherInfo> weathers;
-	
-	@SerializedName("f0")
 	String date;	
 	
 	
