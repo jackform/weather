@@ -1,20 +1,24 @@
 package com.weather.model;
 
-import android.graphics.Bitmap;
-
 public class WeatherBriefInfo {
 	private String week;
 	private String date;
 	private String weatherStatus;
 	private String temperature;
-	private Bitmap weatherPicture;
+	private String weatherPictureUrl1;
+	private String weatherPictureUrl2;
 	
-	
-	public Bitmap getWeatherPicture() {
-		return weatherPicture;
+	public String getWeatherPictureUrl1() {
+		return weatherPictureUrl1;
 	}
-	public void setWeatherPicture(Bitmap weatherPicture) {
-		this.weatherPicture = weatherPicture;
+	public void setWeatherPictureUrl1(String weatherPictureUrl1) {
+		this.weatherPictureUrl1 = weatherPictureUrl1;
+	}
+	public String getWeatherPictureUrl2() {
+		return weatherPictureUrl2;
+	}
+	public void setWeatherPictureUrl2(String weatherPictureUrl2) {
+		this.weatherPictureUrl2 = weatherPictureUrl2;
 	}
 	public String getWeek() {
 		return week;
@@ -40,6 +44,4 @@ public class WeatherBriefInfo {
 	public void setTemperature(String temperature) {
 		this.temperature = temperature;
 	}
-	
-	
 }

@@ -1,6 +1,7 @@
 package com.weather.ui;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 import com.weather.model.WeatherBriefInfo;
 import com.weather.model.WeatherConstant;
@@ -9,6 +10,7 @@ import com.weather.model.WeatherPerWeekInfo;
 import com.weather.utils.DataConverter;
 import com.weather.utils.HttpUtils;
 import com.weather.utils.JsonParser;
+import com.weather.utils.UrlImageLoader;
 import com.weather.R;
 import com.weather.adapter.WeatherAdapter;
 
@@ -29,8 +31,8 @@ public class WeatherPerWeekActivity extends ActionBarActivity {
 	private int mCityNo;
 	private String mCityName;
 	private WeatherAdapter mWeatherAdapter;
-	private ListView mWeatherList;
 	private ArrayList<WeatherInfo> mWeathers;
+	private ListView mWeatherList;
 	private View mEmptyView;
 	
 	@Override
@@ -45,18 +47,24 @@ public class WeatherPerWeekActivity extends ActionBarActivity {
 		actionBar.setTitle(mCityName);
 		actionBar.setDisplayShowHomeEnabled(false);
 		
+		mEmptyView = findViewById(R.id.empty_view);
 		mWeatherAdapter = new WeatherAdapter(WeatherPerWeekActivity.this);
+		
 		mWeatherList = (ListView)findViewById(R.id.perweek_weather_list);
 		mWeatherList.setAdapter(mWeatherAdapter);
 		mWeatherList.setOnItemClickListener(mOnEachDayClickListener);
-		
-		mEmptyView = findViewById(R.id.empty_view);
 		mWeatherList.setEmptyView(mEmptyView);
 		
 		WeatherObtainTask task = new WeatherObtainTask();
 		task.execute();
 	}
 	
+	@Override
+	protected void onStop() {
+		UrlImageLoader.getInstance().cancelAll();
+		super.onStop();
+	}
+
 	public OnItemClickListener mOnEachDayClickListener = new OnItemClickListener() {
 		@Override
 		public void onItemClick(AdapterView<?> listView, View view, int position,
@@ -73,9 +81,9 @@ public class WeatherPerWeekActivity extends ActionBarActivity {
 	{
 		@Override
 		protected ArrayList<WeatherBriefInfo> doInBackground(Void... arg0) {
-			String url = WeatherConstant.WEATHER_PER_WEEK_URL_BASE + mCityNo + ".html";
-			Log.v(TAG,"url:"+url);
+			String url = String.format(Locale.US,WeatherConstant.WEATHER_PER_WEEK_URL_BASE,mCityNo);
 			String content = HttpUtils.readJsonFromUrl(url);
+			Log.v(TAG,"url:"+url);
 			if ( TextUtils.isEmpty(content) )
 				return null;
 			Log.v(TAG,content);

@@ -20,24 +20,16 @@ import com.weather.model.CityInfo;
 import com.weather.model.WeatherConstant;
 import com.weather.utils.FileUtils;
 import com.weather.utils.JsonParser;
-import com.weather.utils.ProvinceHeadNoUtils;
-import com.weather.widget.SideBar;
-import com.weather.widget.SideBar.OnTouchingLetterChangedListener;
-import com.weather.R;
 import com.weather.adapter.CityAdapter;
+import com.weather.R;
 
 public class CityListActivity extends ActionBarActivity {
 	private final static String TAG = "CityListActivity";
 	private Context mContext = null;
 	private ListView mCityList = null;
 	private CityAdapter cityAdapter = null;
-	private SideBar mSideBar = null;
 	private View mEmptyView = null;
-	private String [] indice = new String [] {"北京", "上海", "天津", "重庆", "黑龙江", 
-				"吉林", "辽宁", "内蒙古", "河北", "山西", "陕西", "山东", "新疆", "西藏", 
-				"青海", "甘肃", "宁夏", "河南", "江苏", "湖北", "浙江", "安徽", "福建", 
-				"江西", "湖南", "贵州", "四川", "广东", "云南", "广西", "海南", "香港", 
-				"澳门", "台湾"};
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -56,20 +48,6 @@ public class CityListActivity extends ActionBarActivity {
 		mCityList.setOnItemClickListener(mOnEachCityClickListener);
 		mCityList.setEmptyView(mEmptyView);
 		
-		mSideBar = (SideBar)findViewById(R.id.letter_side_bar);
-		mSideBar.setIndience(indice);
-		mSideBar.setOnTouchingLetterChangedListener(new OnTouchingLetterChangedListener() {
-			@Override
-			public void OnTouchingLetterUp() {
-				
-			}
-			@Override
-			public void OnTouchingLetterChanged(String mChoose,int position) {
-				int NO = ProvinceHeadNoUtils.getHeadCityNo(position);
-				mCityList.setSelection(NO-1);
-			}
-		});
-		//start a thread to obtain the cityList content 
 		CitiesObtainTask task = new CitiesObtainTask();
 		task.execute();
 	}

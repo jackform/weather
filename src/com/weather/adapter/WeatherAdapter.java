@@ -3,6 +3,7 @@ package com.weather.adapter;
 import java.util.ArrayList;
 
 import com.weather.model.WeatherBriefInfo;
+import com.weather.utils.UrlImageLoader;
 import com.weather.R;
 
 import android.annotation.SuppressLint;
@@ -15,8 +16,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 public class WeatherAdapter extends BaseAdapter {
-	private Context mContext;
 	private ArrayList<WeatherBriefInfo> mData;
+	private Context mContext;
 	private LayoutInflater inflater;
 	 
 	public WeatherAdapter(Context context){
@@ -50,26 +51,35 @@ public class WeatherAdapter extends BaseAdapter {
 		if ( null == view ) {
 			holder = new ViewHolder();
 			view = inflater.inflate(R.layout.item_weather_perweek, null);
-			holder.tvDate = (TextView)view.findViewById(R.id.date);
-			holder.tvTemp = (TextView)view.findViewById(R.id.temperature);
-//			holder.tvWeather = (TextView)view.findViewById(R.id.weather);
-			holder.iv_weahter = (ImageView)view.findViewById(R.id.iv_weather);
+			holder.tvDate = (TextView)view.findViewById(R.id.tv_date);
+			holder.tvWeek = (TextView)view.findViewById(R.id.tv_week);
+			holder.tvTemp = (TextView)view.findViewById(R.id.tv_temperature);
+			holder.ivWeahter1 = (ImageView)view.findViewById(R.id.iv_weather_1);
+			holder.ivWeather2 = (ImageView)view.findViewById(R.id.iv_weather_2);
 		} else {
 			holder = (ViewHolder) view.getTag();
 		}
 		WeatherBriefInfo weather = mData.get(position);
 		holder.tvTemp.setText(weather.getTemperature());
-		holder.tvDate.setText(weather.getDate()+"\n"+weather.getWeek());
-//		holder.tvWeather.setText(weather.getWeatherStatus());
-		holder.iv_weahter.setImageBitmap(weather.getWeatherPicture());
+		holder.tvDate.setText(weather.getDate());
+		holder.tvWeek.setText(weather.getWeek());
+		UrlImageLoader.getInstance().loadUrlImage(weather.getWeatherPictureUrl1(),holder.ivWeahter1);
+		//如果有两个天气状态的图片，都显示出来
+		if(null != weather.getWeatherPictureUrl2()) {
+			holder.ivWeather2.setVisibility(View.VISIBLE);
+			UrlImageLoader.getInstance().loadUrlImage(weather.getWeatherPictureUrl2(),holder.ivWeather2);
+		} else {
+			holder.ivWeather2.setVisibility(View.GONE);
+		}
 		return view;
 	}
 
 	public final class ViewHolder 
 	{
 		public TextView tvDate;
-//		public TextView	tvWeather;
+		public TextView tvWeek;
 		public TextView tvTemp;
-		public ImageView iv_weahter;
+		public ImageView ivWeahter1;
+		public ImageView ivWeather2;
 	}
 }

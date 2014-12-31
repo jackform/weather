@@ -37,6 +37,9 @@ public class HttpUtils {
 		}
 		return content;
 	}
+		
+	
+	
 	public static Bitmap readBitmapFromUrl(String urlStr)
 	{
 		Bitmap res = null;
@@ -48,6 +51,9 @@ public class HttpUtils {
 			conn.setRequestProperty("user-agent", "Mozilla/4.0 (compatible;MSIE 6.0; Windows NT 5.1;SV1)");
 			conn.setRequestProperty("referer", "http://mobile.weather.com.cn");
 			conn.connect();
+			/*
+			 * TODO deal connect error 
+			 */
 			res = BitmapFactory.decodeStream(conn.getInputStream());
 		} catch(MalformedURLException e) {
 			e.printStackTrace();

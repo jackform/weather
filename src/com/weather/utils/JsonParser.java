@@ -6,6 +6,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.text.TextUtils;
+
 import com.weather.model.CityInfo;
 import com.weather.model.WeatherPerWeekInfo;
 import com.weather.model.WeatherInfo;
@@ -15,13 +17,13 @@ public class JsonParser {
     public static ArrayList<CityInfo> CitiesParser(String jsonStr)
     {
     	ArrayList<CityInfo> result = new ArrayList<CityInfo>();
-    	JSONObject o;
-    	CityInfo   c;
+    	if(TextUtils.isEmpty(jsonStr))
+    		return result;
     	try {
 			JSONArray cities = new JSONArray(jsonStr);
 			for(int i = 0;i<cities.length();i++) {
-				o = cities.getJSONObject(i);
-				c = new CityInfo();
+				JSONObject o = cities.getJSONObject(i);
+				CityInfo   c = new CityInfo();
 				c.setCityName(o.getString("cityName"));
 				c.setCityNo(o.getInt("cityNo"));
 				result.add(c);
@@ -35,16 +37,15 @@ public class JsonParser {
 	public static WeatherPerWeekInfo weatherPerWeekParser(String jsonStr)
 	{
 		WeatherPerWeekInfo result = new WeatherPerWeekInfo();
-		JSONObject o;
-		WeatherInfo w;
+
 		try {
 			JSONObject root = new JSONObject(jsonStr);
 			JSONObject rootWeather = (JSONObject) root.get("f");
 			JSONArray weathersJson = rootWeather.getJSONArray("f1");
 			ArrayList<WeatherInfo> weathers = new ArrayList<WeatherInfo>();
 			for( int i = 0 ;i < weathersJson.length() ;i++ ) {
-				o = weathersJson.getJSONObject(i);
-				w = new WeatherInfo();
+				JSONObject	o = weathersJson.getJSONObject(i);
+				WeatherInfo w = new WeatherInfo();
 				w.setStatus1(o.getString("fa"));
 				w.setStatus2(o.getString("fb"));
 				w.setHighestTemp(o.getString("fc"));
