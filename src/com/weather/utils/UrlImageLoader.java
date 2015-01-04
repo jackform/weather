@@ -32,7 +32,7 @@ public class UrlImageLoader {
 	
 	public void cancelAll()
 	{
-		mExecutor.shutdownNow();
+		//TODO cancel all the submitted tasks 
 	}
 	
 	class LoadUrlImageTask implements Runnable{

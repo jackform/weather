@@ -10,7 +10,6 @@ import com.weather.model.WeatherPerWeekInfo;
 import com.weather.utils.DataConverter;
 import com.weather.utils.HttpUtils;
 import com.weather.utils.JsonParser;
-import com.weather.utils.UrlImageLoader;
 import com.weather.R;
 import com.weather.adapter.WeatherAdapter;
 
@@ -61,7 +60,6 @@ public class WeatherPerWeekActivity extends ActionBarActivity {
 	
 	@Override
 	protected void onStop() {
-		UrlImageLoader.getInstance().cancelAll();
 		super.onStop();
 	}
 

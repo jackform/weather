@@ -31,6 +31,7 @@ public class WeatherDetailActivity extends ActionBarActivity {
 		mTest = (TextView) findViewById(R.id.test);
 		mTest.setText("日期:"+mWeatherConciseInfo.getDate());
 		mTest.append("\n\n\n星期:"+mWeatherConciseInfo.getWeek());
+		mTest.append("\n\n\n天气:"+mWeatherConciseInfo.getWeatherStatus());
 		mTest.append("\n\n\n温度:"+mWeatherConciseInfo.getTemperature());
 		mTest.append("\n\n\n风向:"+mWeatherConciseInfo.getWindDirection());
 		mTest.append("\n\n\n风力:"+mWeatherConciseInfo.getWindStrength());
