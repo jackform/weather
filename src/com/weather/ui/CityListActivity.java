@@ -20,13 +20,14 @@ import com.weather.model.CityInfo;
 import com.weather.model.WeatherConstant;
 import com.weather.utils.FileUtils;
 import com.weather.utils.JsonParser;
+import com.weather.widget.PullToRefreshListView;
 import com.weather.adapter.CityAdapter;
 import com.weather.R;
 
 public class CityListActivity extends ActionBarActivity {
 	private final static String TAG = "CityListActivity";
 	private Context mContext = null;
-	private ListView mCityList = null;
+	private PullToRefreshListView mCityList = null;
 	private CityAdapter cityAdapter = null;
 	private View mEmptyView = null;
 
@@ -43,13 +44,13 @@ public class CityListActivity extends ActionBarActivity {
 		cityAdapter = new CityAdapter(this);
 		mEmptyView = findViewById(R.id.empty_view);
 		
-		mCityList = (ListView)findViewById(R.id.city_list);
-		mCityList.setAdapter(cityAdapter);
-		mCityList.setOnItemClickListener(mOnEachCityClickListener);
-		mCityList.setEmptyView(mEmptyView);
+		mCityList = (PullToRefreshListView)findViewById(R.id.city_list);
+//		mCityList.setAdapter(cityAdapter);
+//		mCityList.setOnItemClickListener(mOnEachCityClickListener);
+//		mCityList.setEmptyView(mEmptyView);
 		
-		CitiesObtainTask task = new CitiesObtainTask();
-		task.execute();
+//		CitiesObtainTask task = new CitiesObtainTask();
+//		task.execute();
 	}
 
 	OnItemClickListener mOnEachCityClickListener = new OnItemClickListener() {
